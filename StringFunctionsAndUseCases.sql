@@ -44,3 +44,38 @@ Insert into EmployeeErrors Values
 Select *
 From EmployeeErrors
 
+--Trim, LTRIM, RTRIM
+SELECT EmployeeID, TRIM(EmployeeID) as IDTRIM --It will not trim the middle space
+FROM EmployeeErrors 
+
+SELECT EmployeeID, LTRIM(EmployeeID) IDTRIM
+FROM EmployeeErrors
+
+SELECT EmployeeID, RTRIM(EmployeeID) IDTRIM
+FROM EmployeeErrors
+
+--Using REPLACE
+SELECT LastName, REPLACE(LastName, '- Fired', '') LastNameFix
+FROM EmployeeErrors
+
+--Using Substring
+Select *
+From SQLTutorial..EmployeeDemo
+
+UPDATE SQLTutorial..EmployeeDemo
+SET FirstName = 'Jim' WHERE EmployeeID=1001
+
+SELECT FirstName, SUBSTRING(FirstName, 2,50)
+FROM EmployeeErrors
+
+SELECT err.FirstName, SUBSTRING(err.FirstName,1,3),demo.FirstName, SUBSTRING(demo.FirstName,1,3)
+FROM EmployeeErrors err
+JOIN SQLTutorial..EmployeeDemo demo
+	ON SUBSTRING(err.FirstName,1,3) = SUBSTRING(demo.FirstName,1,3)
+
+--Using Upper and Lower
+SELECT FirstName, LOWER(FirstName)
+FROM EmployeeErrors
+
+SELECT FirstName, UPPER(FirstName)
+FROM EmployeeErrors
