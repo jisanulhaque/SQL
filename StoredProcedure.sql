@@ -37,3 +37,23 @@ AS
 SELECT *
 FROM EmployeeDemo
 
+EXEC TEST
+
+CREATE PROCEDURE Temp_Employee
+AS
+CREATE TABLE #temp_employee(
+JobTitle varchar(50),
+EmployeesPerJob int,
+AvgAge int,
+AvgSalary int
+)
+INSERT #temp_employee
+SELECT JobTitle, COUNT(JobTitle), Avg(Age), AVg(Salary)
+FROM EmployeeDemo emp
+JOIN EmployeeSalary sal
+	ON emp.EmployeeID = sal.EmployeeID
+GROUP BY JobTitle
+SELECT *
+FROM #temp_employee
+
+EXEC Temp_Employee@JobTitle --Need to fix this
