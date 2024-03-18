@@ -56,4 +56,4 @@ GROUP BY JobTitle
 SELECT *
 FROM #temp_employee
 
-EXEC Temp_Employee@JobTitle --Need to fix this
+EXEC Temp_Employee @JobTitle = 'HR'
