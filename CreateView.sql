@@ -22,9 +22,13 @@ insert into Offrs values
 select * from [Eligible for Exam]--provided the ipdated result
 
 --Updating a view
+--Does not work with SQL Server
 CREATE OR alter VIEW [Eligible for Exam] as
 Select FullName, Branch, GCI from Offrs
 Where GCI >=130
+
+--Drop view
+drop view [Eligible for Exam]
 
 select * From Offrs
 ----------------------------------------------------
