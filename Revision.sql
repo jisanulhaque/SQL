@@ -91,5 +91,46 @@ alter column FirstName varchar(50)
 
 alter table Revision
 add constraint PK_Rev PRIMARY KEY(ID)
+----------------------------------------
+ create view [Employee] as
+ select demo.EmployeeID,demo.FirstName, sal.Salary from EmployeeDemo demo
+ join EmployeeSalary sal on demo.EmployeeID=sal.EmployeeID
+
+ select * from [Employee]
+drop view [Employee]
+select * from [Employee] --deleted view [Employee]
+
+select * from Persons
+truncate table Persons
+select * from Revision
+--String Functions
+
+--returns the ASCII code of first character 
+select ASCII(FirstName) NumCode from Revision
+
+--retunrs the character length
+select LENGTH(FirstName) NameLength from Revision
+
+--add several strings
+select CONTACT('Hei ', 'There!!')
+select FIND_IN_SET 
+
+Select format(23456.65,2, 0)
 
 select * from Revision
+
+
+
+select FirstName +'s Age is '+ Cast(Age as CHAR) from Revision
+
+select JobTitle, Avg(Salary) from EmployeeSalary
+Group By JobTitle
+
+select * from EmployeeSalary
+
+--Pivot Table
+select [Accountant],[Receptionist], [HR], [Regional Manager], [Salesman], [Supplier Relations],[Watchman]
+from (select JobTitle, Salary from EmployeeSalary)as SourceTable
+PIVOT(
+Avg(Salary) for JobTitle IN ([Accountant],[Receptionist], [HR], [Regional Manager], [Salesman], [Supplier Relations],[Watchman])
+) as PivotTable;
