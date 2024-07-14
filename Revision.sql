@@ -130,7 +130,30 @@ select * from EmployeeSalary
 
 --Pivot Table
 select [Accountant],[Receptionist], [HR], [Regional Manager], [Salesman], [Supplier Relations],[Watchman]
-from (select JobTitle, Salary from EmployeeSalary)as SourceTable
+from (select e1.EmployeeID,e1.JobTitle, e2.Salary from EmployeeSalary e1, EmployeeSalary e2 where e1.JobTitle=e2.JobTitle)as SourceTable
 PIVOT(
-Avg(Salary) for JobTitle IN ([Accountant],[Receptionist], [HR], [Regional Manager], [Salesman], [Supplier Relations],[Watchman])
+Min(Salary) for JobTitle IN ([Accountant],[Receptionist], [HR], [Regional Manager], [Salesman], [Supplier Relations],[Watchman])
 ) as PivotTable;
+
+
+create table OCCUPATIONS
+(Name varchar(50),
+Occupation varchar(50)
+)
+
+insert into OCCUPATIONS values
+('Jisan', 'Actor'),
+('Shafin', 'Doctor'),
+('Enam', 'Singer'),
+('Tonmoy', 'Actor'),
+('Tanzila', 'Professor'),
+('Tanzim', 'Singer'),
+('Munim', 'Professor')
+
+select Occupation, count(Occupation) from OCCUPATIONS
+Group By Occupation
+
+create table Ids
+(ID int )
+
+select * from Revision
